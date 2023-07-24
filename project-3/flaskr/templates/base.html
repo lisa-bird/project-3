@@ -15,19 +15,34 @@
 </head>
 
 <body>
-    <nav>
-        <h1>Flaskr</h1>
-        <ul>
-            {% if g.user %}
-            <li><span>{{ g.user['username'] }}</span>
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-                {% else %}
-            <li><a href="{{ url_for('auth.register') }}">Register</a>
-            <li><a href="{{ url_for('auth.login') }}">Log In</a>
-                {% endif %}
-        </ul>
+    <nav class="nav-extended pink accent-3" >
+        <div class="nav-wrapper">        
+            <a href="#!" class="brand-logo">
+                <img src="../static/img/barbie.jpg" height="62" alt="">Barbie</a>
+                
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down">            
+                <li><span>{{ g.user['username'] }}</span>
+                <li><a href="{{ url_for('auth.logout') }}">Log Out</a>               
+                <li><a href="{{ url_for('auth.register') }}">Register</a>
+                <li><a href="{{ url_for('auth.login') }}">Log In</a>               
+            </ul>
+        </div>
     </nav>
-    <section class="content">
+    
+    
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><h4 class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
+        <li><span>{{ g.user['username'] }}</span>
+        <li><a href="{{ url_for('auth.logout') }}">Log Out</a>               
+        <li><a href="{{ url_for('auth.register') }}">Register</a>
+        <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    </ul>
+
+
+
+    <!-- <section class="content">
         <header>
             {% block header %}{% endblock %}
         </header>
@@ -35,7 +50,7 @@
         <div class="flash">{{ message }}</div>
         {% endfor %}
         {% block content %}{% endblock %}
-    </section>
+    </section> -->
 
        
 

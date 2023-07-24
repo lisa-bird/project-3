@@ -1,29 +1,36 @@
 html {
     font-family: sans-serif;
-    background: #eee;
-    padding: 1rem;
+    background: rgb(236, 173, 212);
+    
 }
 
 body {
-    max-width: 960px;
+    /* max-width: 960px; */
     margin: 0 auto;
-    background: white;
+    background: rgb(157, 107, 223);
 }
 
 h1 {
     font-family: serif;
-    color: #377ba8;
-    margin: 1rem 0;
-}
+    color: #f6f9fa;
+    
+} 
+/* nav {
+    padding: 0.5rem 0.5rem;
+} */
+/* nav h1 {
+    flex: auto;
+    margin: 0;
+} */
 
-a {
-    color: #377ba8;
-}
+/* a {
+    color: #;
+} */
 
-hr {
+ /* hr {
     border: none;
     border-top: 1px solid lightgray;
-}
+} 
 
 nav {
     background: lightgray;
@@ -54,7 +61,7 @@ nav ul li span,
 header .action {
     display: block;
     padding: 0.5rem;
-}
+} 
 
 .content {
     padding: 0 1rem 1rem;
@@ -134,4 +141,4 @@ input.danger {
 input[type=submit] {
     align-self: start;
     min-width: 10em;
-}
+} */
