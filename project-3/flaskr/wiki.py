@@ -1,7 +1,9 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
-)
+    Blueprint, flash, g, redirect, render_template,
+    request, url_for, send_from_directory)
 from werkzeug.exceptions import abort
+from werkzeug.utils import secure_filename
+import os
 
 from flaskr.auth import login_required
 from flaskr.db import get_db
@@ -27,6 +29,13 @@ def create():
         # update when template is modified
         title = request.form['title']
         body = request.form['body']
+        summary = request.form['summary']
+
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+        up = f"{bp.root_path}/static/Uploads/{filename}"
+        f.save(up)
+
         error = None
 
         if not title:
@@ -37,9 +46,9 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO article (title, summary, body, author_id)'
-                ' VALUES (?, ?, ?, ?)',
-                (title, "placeholder", body, g.user['id'])
+                'INSERT INTO article (title, summary, body, author_id, img)'
+                ' VALUES (?, ?, ?, ?, ?)',
+                (title, summary, body, g.user['id'], filename)
             )
             db.commit()
             return redirect(url_for('wiki.index'))
@@ -101,3 +110,20 @@ def delete(id):
     db.execute('DELETE FROM article WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('wiki.index'))
+
+
+@bp.route('/upload', methods=('GET', 'POST'))
+def image_upload():
+    up = None
+    if request.method == 'POST':
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+        up = f"{bp.root_path}/static/Uploads/{filename}"
+        f.save(up)
+        return render_template()
+    return render_template('wiki/uploaded.html', filename=f.filename)
+
+
+@bp.route('/upload/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(f"{bp.root_path}/static/Uploads", filename)

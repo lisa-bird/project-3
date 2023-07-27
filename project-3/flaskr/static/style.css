@@ -1,17 +1,15 @@
 html {
   font-family: sans-serif;
-  background: rgb(236, 173, 212);
+
 }
 
 body {
   /* max-width: 960px; */
   margin: 0 auto;
-  background: rgb(157, 107, 223);
 }
 
 h1 {
   font-family: serif;
-  color: #f6f9fa;
 }
 /* nav {
     padding: 0.5rem 0.5rem;
@@ -140,3 +138,12 @@ input[type=submit] {
     align-self: start;
     min-width: 10em;
 } */
+
+.article {
+    background-color: pink;
+    color: darkgreen;
+}
+
+.article p {
+    font-size:x-large
+}
