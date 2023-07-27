@@ -1,66 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" text="text/css" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        text="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    {% block styles %}
-    {% endblock %}
-    
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      text="text/css"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      text="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    {% block styles %} {% endblock %}
+  </head>
 
-<body>
-    <nav class="nav-extended pink accent-3" >
-        <div class="nav-wrapper">        
-            <a href="#!" class="brand-logo">
-                <img src="../static/img/barbie.jpg" height="62" alt="">Barbie</a>
-                
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-            <ul class="right hide-on-med-and-down">            
-                <li><span>{{ g.user['username'] }}</span>
-                <li><a href="{{ url_for('auth.logout') }}">Log Out</a>               
-                <li><a href="{{ url_for('auth.register') }}">Register</a>
-                <li><a href="{{ url_for('auth.login') }}">Log In</a>               
-            </ul>
-        </div>
+  <body>
+    <nav class="nav-extended pink accent-3">
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">
+          <img src="../static/img/barbie.jpg" height="62" alt="" />Barbie</a
+        >
+
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"
+          ><i class="fas fa-bars"></i
+        ></a>
+        <ul class="right hide-on-med-and-down">
+          {% if g.user %}
+          <li><span>{{ g.user['username'] }}</span></li>
+          <li><a href="{{ url_for('auth.logout') }}">Log Out</a> {% else %}</li>
+
+          <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+          <li>
+            <a href="{{ url_for('auth.login') }}">Log In</a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
     </nav>
-    
-    
 
     <ul class="sidenav" id="mobile-demo">
-        <li><h4 class="center-align light-blue-text text-darken 4">Task Manager</h4></li>
-        <li><span>{{ g.user['username'] }}</span>
-        <li><a href="{{ url_for('auth.logout') }}">Log Out</a>               
-        <li><a href="{{ url_for('auth.register') }}">Register</a>
-        <li><a href="{{ url_for('auth.login') }}">Log In</a>
+      <li>
+        <h4 class="center-align light-blue-text text-darken 4">Task Manager</h4>
+      </li>
+      <li><span>{{ g.user['username'] }}</span></li>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+      <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
     </ul>
 
+    <section class="content">
+      <header>{% block header %}{% endblock %}</header>
+      {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %} {% block content %}{% endblock %}
+    </section>
 
-
-    <!-- <section class="content">
-        <header>
-            {% block header %}{% endblock %}
-        </header>
-        {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-        {% block content %}{% endblock %}
-    </section> -->
-
-       
-
-
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    {% block scripts %}
-    {% endblock %}
-</body>
-
+    {% block scripts %} {% endblock %}
+  </body>
 </html>

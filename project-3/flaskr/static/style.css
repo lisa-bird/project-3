@@ -1,20 +1,18 @@
 html {
-    font-family: sans-serif;
-    background: rgb(236, 173, 212);
-    
+  font-family: sans-serif;
+  background: rgb(236, 173, 212);
 }
 
 body {
-    /* max-width: 960px; */
-    margin: 0 auto;
-    background: rgb(157, 107, 223);
+  /* max-width: 960px; */
+  margin: 0 auto;
+  background: rgb(157, 107, 223);
 }
 
 h1 {
-    font-family: serif;
-    color: #f6f9fa;
-    
-} 
+  font-family: serif;
+  color: #f6f9fa;
+}
 /* nav {
     padding: 0.5rem 0.5rem;
 } */
@@ -27,7 +25,7 @@ h1 {
     color: #;
 } */
 
- /* hr {
+/* hr {
     border: none;
     border-top: 1px solid lightgray;
 } 

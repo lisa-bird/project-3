@@ -6,18 +6,26 @@
   <input
     name="title"
     id="title"
-    value="{{ request.form['title'] or post['title'] }}"
+    value="{{ request.form['title'] or article['title'] }}"
     type="text"
     required
   />
   <label for="body">Body</label>
   <textarea name="body" id="body">
-{{ request.form['body'] or post['body'] }}</textarea
+{{ request.form['body'] or article['body'] }}</textarea
   >
+
+  <textarea name="summary" id="summary">{{ request.form['summary'] }}</textarea>
+  <label for="img">Image</label>
+  <textarea value="img_placeholder" name="img" id="img">
+{{ request.form['img'] }}</textarea
+  >
+  <label for="body">Body</label>
+
   <input type="submit" value="Save" />
 </form>
 <hr />
-<form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
+<form action="{{ url_for('wiki.delete', id=article['id']) }}" method="post">
   <input
     class="danger"
     type="submit"
