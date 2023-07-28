@@ -5,17 +5,19 @@
 {% endblock %}
 
 {% block content %}
-<form method="post" enctype="multipart/form-data">
+<form class="art-form"method="post" enctype="multipart/form-data">
     <label for="title">Title</label>
-    <input name="title" id="title" value="{{ request.form['title'] }}" type="text" required />
+    <input name="title" id="title" class="in-box" value="{{ request.form['title'] }}" type="text" required />
     <label for="summary">Summary</label>
-    <textarea name="summary" id="summary">{{ request.form['summary'] }}</textarea>
+    <textarea class="in-box" name="summary" id="summary">{{ request.form['summary'] }}</textarea>
 
     <label for="img">Image</label>
     <input type="file" name="file" />
     {{ request.form['img'] }}</textarea>
     <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
-    <input type="submit" value="Save" />
+    <textarea class="in-box" name="body" id="body">{{ request.form['body'] }}</textarea>
+    <input class="btn-small pink accent-3"type="submit" value="Save" />
 </form>
+
+
 {% endblock %}

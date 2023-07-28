@@ -12,20 +12,18 @@
         by {{ art['username'] }} on {{ art['created'].strftime('%Y-%m-%d')}}
       </div>
     </div>
-
     {% if g.user['id'] == art['author_id']%}
     <a class="action" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
     {% endif %}
   </header>
-
-  <p class="body">{{ art['summary'] }}</p>
-  <p class="body">{{ art['img'] }}</p>
-  <p class="body">{{ art['body'] }}</p>
+    <p class="body">{{ art['summary'] }}</p>
+    <p class="body">{{ art['img'] }}</p>
+    <p class="body">{{ art['body'] }}</p>
 </article>
-<button class="btn">
-  <a href="{{ url_for('wiki.create_comment', id=art['id']  )}}">
-    Add Comment
-  </a>
+<button class="waves-effect waves-light btn-small pink lighten-2">
+    <a href="{{ url_for('wiki.create_comment', id=art['id']  )}}">
+        Add Comment
+    </a>
 </button>
 {% if comments %}
     {% for comment in comments %}

@@ -110,7 +110,7 @@ def update(id):
 @bp.route('/<int:id>', methods=('GET',))
 @login_required
 def detail(id):
-    article = get_article(id)
+    article = get_article(id, check_author=False)
     db = get_db()
     comments = db.execute(
         'SELECT comment.id, body, created, author_id, username'
@@ -140,11 +140,13 @@ def create_comment(id):
             )
             db.commit()
         flash('Comment created successfully!')
-        #change to return to article view
+        # change to return to article view
         return redirect(url_for('wiki.detail', id=id))
     return render_template('wiki/create_comment.html')
 
 # ----------- Delete
+
+
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):

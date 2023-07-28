@@ -5,10 +5,13 @@ html {
 body {
   /* max-width: 960px; */
   margin: 0 auto;
+  background-color: rgb(248, 183, 232);
+  font-family: 'League Spartan', sans-serif;
 }
 
 h1 {
-  font-family: serif;
+  font-family: 'Lobster Two',
+    cursive;
 }
 /* nav {
     padding: 0.5rem 0.5rem;
@@ -37,14 +40,15 @@ nav {
 nav h1 {
     flex: auto;
     margin: 0;
-}
+}*/
 
-nav h1 a {
-    text-decoration: none;
-    padding: 0.25rem 0.5rem;
-}
+ nav a {
+    font-family: 'Lobster Two',
+        cursive;
+        
+} 
 
-nav ul {
+/* nav ul {
     display: flex;
     list-style: none;
     margin: 0;
@@ -136,7 +140,7 @@ input.danger {
 input[type=submit] {
     align-self: start;
     min-width: 10em;
-} */
+} */ */
 
 .article {
   background-color: pink;
@@ -145,4 +149,14 @@ input[type=submit] {
 
 .article p {
   font-size: x-large;
+}
+.text-btn {
+    color: white;
+}
+.art-form {
+    background-color: pink;
+    border: solid 2px rgb(238, 82, 108);
+}
+.in-box {
+    background-color: rgb(250, 223, 227);
 }

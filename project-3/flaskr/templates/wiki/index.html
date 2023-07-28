@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block header %}
 <h1>{% block title %}Articles{% endblock %}</h1>
 {% if g.user %}
-<a class="btn action" href="{{ url_for('wiki.create') }}">New</a>
+<a class="btn-small pink accent-3 action" href="{{ url_for('wiki.create') }}">New</a>
 {% endif %} {% endblock %} {% block content %}
 
 <div class="row">
@@ -19,14 +19,15 @@
       <div class="card-content">
         <p>{{ art['summary'] }}</p>
       </div>
-    <button class="btn">
-        <a href="{{ url_for('wiki.detail', id=art['id']  )}}">
-            Detail
+    <button class="btn-small pink accent-3">
+        <a class= "action text-btn" href="{{ url_for('wiki.detail', id=art['id']) }}">
+           Detail 
         </a>
+       
+    </button>    
         {% if g.user['id'] == art['author_id']%}
-        <a class="btn action" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
+        <a class="btn-small pink accent-3 action right" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
         {% endif %}
-    </button>
       <div>
             Add count of comments!
       </div>
@@ -36,4 +37,4 @@
   {% endfor %}
 </div>
 {% endblock %}
-<!-- <a class="action" href="{{ url_for('wiki.update', id=article['id']) }}">Edit</a> -->
+

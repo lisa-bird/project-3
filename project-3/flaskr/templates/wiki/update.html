@@ -1,39 +1,30 @@
 {% extends 'base.html' %} {% block header %}
 
 <h1>{% block title %}Edit "{{ article['title'] }}"{% endblock %}</h1>
+{% endblock %}
 
-{% endblock %} {% block content %}
-<form method="post">
-  <label for="title">Title</label>
-  <input
-    name="title"
-    id="title"
-    value="{{ request.form['title'] or article['title'] }}"
-    type="text"
-    required
-  />
-  <label for="body">Body</label>
-  <textarea name="body" id="body">
-{{ request.form['body'] or article['body'] }}</textarea
-  >
+{% block content %}
+    <form class="art-form" method="post">
+        <label for="title">Title</label>
+        <input name="title"id="title" value="{{ request.form['title'] or article['title'] }}"
+            type="text" required/>
 
-  <textarea name="summary" id="summary">{{ request.form['summary'] }}</textarea>
-  <label for="img">Image</label>
-  <textarea value="img_placeholder" name="img" id="img">
-{{ request.form['img'] }}</textarea
-  >
-  <label for="body">Body</label>
+        <label for="body">Body</label>
+        <textarea class="in-box"name="body" id="body">
+        {{ request.form['body'] or article['body'] }}</textarea>
 
-  <input type="submit" value="Save" />
-</form>
-<hr />
-
-<form action="{{ url_for('wiki.delete', id=article['id']) }}" method="post">
-  <input
-    class="danger"
-    type="submit"
-    value="Delete"
-    onclick="return confirm('Are you sure?');"
-  />
-</form>
+        <label for="summary">Summary</label>
+        <textarea class="in-box" name="summary" id="summary">{{ request.form['summary'] }}</textarea>
+        
+        <label for="img">Image</label>
+        <textarea class="in-box" value="img_placeholder" name="img" id="img">
+        {{ request.form['img'] }}</textarea>
+        <!-- <label for="body">Body</label> -->
+        <input class="btn-small pink accent-3" type="submit" value="Save" />
+    </form>
+    <hr />
+    <form action="{{ url_for('wiki.delete', id=article['id']) }}" method="post">
+        <input class="danger btn-small pink darken-4"type="submit"
+            value="Delete" onclick="return confirm('Are you sure?');"/>
+    </form>
 {% endblock %}

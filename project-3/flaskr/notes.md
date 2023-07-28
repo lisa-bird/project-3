@@ -1,24 +1,24 @@
--- History of Barbie
+# History of Barbie
 
--- Barbie is a fashion doll created by American businesswoman Ruth Handler, manufactured by American toy
--- company Mattel and launched in 1959. Ruth Handler watched her daughter Barbara play with paper dolls, 
--- and noticed that she often enjoyed giving them adult roles. At the time, most children's toy dolls were 
--- representations of infants. Realizing that there could be a gap in the market, Handler suggested the idea
--- of an adult-bodied doll to her husband Elliot, a co-founder of the Mattel toy company.
--- He was unenthusiastic about the idea, as were Mattel's directors. During a trip to Europe in 1956 with her 
--- children Barbara and Kenneth, Ruth Handler came across a German toy doll called Bild Lilli. The 
--- adult-figured doll was exactly what Handler had in mind, so she purchased three of them. Upon her return to the 
--- United States, Handler redesigned the doll (with help from local inventor-designer Jack Ryan) and the 
--- doll was given a new name, Barbie, after Handler's daughter Barbara. The doll made its debut at the 
--- American International Toy Fair in New York City on March 9, 1959. This date is also used as 
--- Barbie's official birthday. 
--- The first Barbie doll wore a black-and-white zebra striped swimsuit and signature topknot ponytail, 
--- and was available as either a blonde or brunette. The doll was marketed as a "Teen-age Fashion Model", 
--- with her clothes created by Mattel fashion designer Charlotte Johnson. The first Barbie dolls were 
--- manufactured in Japan, with their clothes hand-stitched by Japanese homeworkers. Around 350,000 Barbie 
--- dolls were sold during the first year of production.
+ Barbie is a fashion doll created by American businesswoman Ruth Handler, manufactured by American toy
+company Mattel and launched in 1959. Ruth Handler watched her daughter Barbara play with paper dolls, 
+and noticed that she often enjoyed giving them adult roles. At the time, most children's toy dolls were 
+representations of infants. Realizing that there could be a gap in the market, Handler suggested the idea
+of an adult-bodied doll to her husband Elliot, a co-founder of the Mattel toy company.
+He was unenthusiastic about the idea, as were Mattel's directors. During a trip to Europe in 1956 with her 
+children Barbara and Kenneth, Ruth Handler came across a German toy doll called Bild Lilli. The 
+adult-figured doll was exactly what Handler had in mind, so she purchased three of them. Upon her return to the 
+United States, Handler redesigned the doll (with help from local inventor-designer Jack Ryan) and the
+doll was given a new name, Barbie, after Handler's daughter Barbara. The doll made its debut at the
+American International Toy Fair in New York City on March 9, 1959. This date is also used as
+Barbie's official birthday.
+The first Barbie doll wore a black-and-white zebra striped swimsuit and signature topknot ponytail,
+and was available as either a blonde or brunette. The doll was marketed as a "Teen-age Fashion Model",
+with her clothes created by Mattel fashion designer Charlotte Johnson. The first Barbie dolls were 
+manufactured in Japan, with their clothes hand-stitched by Japanese homeworkers. Around 350,000 Barbie 
+dolls were sold during the first year of production.
 
-Characters
+# Characters
 
 1961-present: Ken Carson was introduced on March 11, 1961. He was named after Kenneth, the son of Barbie
 creator Ruth Handler. Ken's backstory is that, like Barbie, he is from Willows, Wisconsin. He met Barbie
@@ -41,8 +41,7 @@ discontinued from the doll line.
 currently a brunette, the only one of the sisters to not be blonde. The brown hair appears to be a trait 
 from George Roberts.
 
-
-Barbie: The Movie
+# Barbie: The Movie
 
 Barbie is a film released in theaters on July 21, 2023. It is the first ever live-action Barbie movie. 
 The film is directed by Greta Gerwig, and co-written by Gerwig and Noah Baumbach. It stars Margot Robbie 
