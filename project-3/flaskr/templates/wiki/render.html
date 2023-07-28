@@ -1,18 +1,20 @@
 <html>
-
-<head>
+  <head>
     <title>Uploading a dynamic image</title>
-</head>
+  </head>
 
-<body>
+  <body>
     {% if up %} Hello {{ up }}
-    <img src="{{ up }}">
+    <img src="{{ up }}" />
     {% else %}
-    <form action="{{url_for('wiki.image_upload')}}" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" />
-        <input type="submit" value="Upload" />
+    <form
+      action="{{url_for('wiki.image_upload')}}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" />
+      <input type="submit" value="Upload" />
     </form>
     {% endif %}
-</body>
-
+  </body>
 </html>

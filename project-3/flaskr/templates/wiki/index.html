@@ -1,33 +1,39 @@
-{% extends 'base.html' %}
-
-{% block header %}
+{% extends 'base.html' %} {% block header %}
 <h1>{% block title %}Articles{% endblock %}</h1>
 {% if g.user %}
-<a class="action" href="{{ url_for('wiki.create') }}">New</a>
-{% endif %} {% endblock %}
-
-{% block content %}
-
+<a class="btn action" href="{{ url_for('wiki.create') }}">New</a>
+{% endif %} {% endblock %} {% block content %}
 
 <div class="row">
+  {% for art in articles %}
 
-    {% for art in articles %}
-
-    <div class="col s6 m3">
-        <div class="card">
-            <div class="card-image">
-                <img height="256" src="{{ url_for('wiki.uploaded_file', filename=art['img']) }}">
-                <span class="card-title">{{ art['title'] }}</span>
-            </div>
-            <div class="card-content">
-                <p>{{ art['summary'] }}</p>
-            </div>
-        </div>
+  <div class="col s6 m3">
+    <div class="card">
+      <div class="card-image">
+        <img
+          height="256"
+          src="{{ url_for('wiki.uploaded_file', filename=art['img']) }}"
+        />
+        <span class="card-title">{{ art['title'] }}</span>
+      </div>
+      <div class="card-content">
+        <p>{{ art['summary'] }}</p>
+      </div>
+    <button class="btn">
+        <a href="{{ url_for('wiki.detail', id=art['id']  )}}">
+            Detail
+        </a>
+        {% if g.user['id'] == art['author_id']%}
+        <a class="btn action" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
+        {% endif %}
+    </button>
+      <div>
+            Add count of comments!
+      </div>
     </div>
+  </div>
 
-
-    {% endfor %}
-
-
+  {% endfor %}
 </div>
 {% endblock %}
+<!-- <a class="action" href="{{ url_for('wiki.update', id=article['id']) }}">Edit</a> -->

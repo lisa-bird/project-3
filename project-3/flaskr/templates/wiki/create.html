@@ -1,6 +1,10 @@
 {% extends 'base.html' %} {% block header %}
+
 <h1>{% block title %}New Article{% endblock %}</h1>
-{% endblock %} {% block content %}
+
+{% endblock %}
+
+{% block content %}
 <form method="post" enctype="multipart/form-data">
     <label for="title">Title</label>
     <input name="title" id="title" value="{{ request.form['title'] }}" type="text" required />
@@ -9,7 +13,6 @@
 
     <label for="img">Image</label>
     <input type="file" name="file" />
-
     {{ request.form['img'] }}</textarea>
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>

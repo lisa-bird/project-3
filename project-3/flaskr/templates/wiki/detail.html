@@ -3,26 +3,34 @@
 {% if g.user %}
 <a class="action" href="{{ url_for('wiki.create') }}">New</a>
 {% endif %} {% endblock %} {% block content %}
-<ul>
-    {% for art in articles %}
-    <li>
-        <article class="article">
-            <header>
-                <div>
-                    <h2>{{ art['title'] }}</h2>
-                    <div class="about">
-                        by {{ art['username'] }} on {{ art['created'].strftime('%Y-%m-%d')}}
-                    </div>
-                </div>
-                {% if g.user['id'] == art['author_id']%}
-                <a class="action" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
-                {% endif %}
-            </header>
-            <p class="body">{{ art['summary'] }}</p>
-            <p class="body">{{ art['img'] }}</p>
-            <p class="body">{{ art['body'] }}</p>
-        </article>
-    </li>
+
+<article class="article">
+  <header>
+    <div>
+      <h2>{{ art['title'] }}</h2>
+      <div class="about">
+        by {{ art['username'] }} on {{ art['created'].strftime('%Y-%m-%d')}}
+      </div>
+    </div>
+
+    {% if g.user['id'] == art['author_id']%}
+    <a class="action" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
+    {% endif %}
+  </header>
+
+  <p class="body">{{ art['summary'] }}</p>
+  <p class="body">{{ art['img'] }}</p>
+  <p class="body">{{ art['body'] }}</p>
+</article>
+<button class="btn">
+  <a href="{{ url_for('wiki.create_comment', id=art['id']  )}}">
+    Add Comment
+  </a>
+</button>
+{% if comments %}
+    {% for comment in comments %}
+    <h6>{{comment.username}} {{comment.created}}</h6>
+        <p>{{comment.body}}</p>
     {% endfor %}
-</ul>
+{% endif %}
 {% endblock %}

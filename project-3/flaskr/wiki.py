@@ -19,6 +19,7 @@ def index():
         ' FROM article p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
+
     return render_template('wiki/index.html', articles=articles)
 
 
@@ -33,6 +34,8 @@ def create():
 
         f = request.files['file']
         filename = secure_filename(f.filename)
+        if not filename:
+            filename = 'DEFAULT.jpg'
         up = f"{bp.root_path}/static/Uploads/{filename}"
         f.save(up)
 
@@ -59,7 +62,7 @@ def create():
 def get_article(id, check_author=True):
     article = get_db().execute(
         'SELECT p.id, title, body, created, author_id, username, summary, img'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' FROM article p JOIN user u ON p.author_id = u.id'
         ' WHERE p.id = ?',
         (id,)
     ).fetchone()
@@ -101,7 +104,47 @@ def update(id):
 
     return render_template('wiki/update.html', article=article)
 
+# Detail view
 
+
+@bp.route('/<int:id>', methods=('GET',))
+@login_required
+def detail(id):
+    article = get_article(id)
+    db = get_db()
+    comments = db.execute(
+        'SELECT comment.id, body, created, author_id, username'
+        ' FROM comment JOIN user ON author_id = user.id'
+        ' WHERE article_id = ?',
+        str(id)
+    ).fetchall()
+    return render_template('wiki/detail.html', art=article, comments=comments)
+
+# ----------- Comment
+
+
+@bp.route('/create_comment/<int:id>', methods=('POST', 'GET'))
+@login_required
+def create_comment(id):
+    if request.method == 'POST':
+        body = request.form['body']
+
+        if not body:
+            flash('Comment body is required.', 'error')
+        else:
+            db = get_db()
+            db.execute(
+                'INSERT INTO comment (article_id, author_id, body)'
+                ' VALUES (?, ?, ?)',
+                (id, g.user['id'], body)
+            )
+            db.commit()
+        flash('Comment created successfully!')
+        #change to return to article view
+        return redirect(url_for('wiki.detail', id=id))
+    return render_template('wiki/create_comment.html')
+
+# ----------- Delete
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
@@ -112,6 +155,8 @@ def delete(id):
     return redirect(url_for('wiki.index'))
 
 
+'''
+# ----------- Image Upload
 @bp.route('/upload', methods=('GET', 'POST'))
 def image_upload():
     up = None
@@ -122,6 +167,7 @@ def image_upload():
         f.save(up)
         return render_template()
     return render_template('wiki/uploaded.html', filename=f.filename)
+'''
 
 
 @bp.route('/upload/<filename>')
