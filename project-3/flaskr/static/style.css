@@ -9,7 +9,7 @@ body {
   font-family: 'League Spartan', sans-serif;
 }
 
-h1 {
+h1, h2 {
   font-family: 'Lobster Two',
     cursive;
 }
@@ -159,4 +159,16 @@ input[type=submit] {
 }
 .in-box {
     background-color: rgb(250, 223, 227);
+}
+.image-right {
+    float: right;
+}
+.hero-image {
+    background-image: url("../static/img/background-2.jpg");
+    height: 40vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    margin-top: 30px;
+   
 }

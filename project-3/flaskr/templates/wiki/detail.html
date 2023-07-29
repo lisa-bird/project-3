@@ -1,30 +1,55 @@
 {% extends 'base.html' %} {% block header %}
+<div class="center-align">
 <h1>{% block title %}Articles{% endblock %}</h1>
-{% if g.user %}
-<a class="action" href="{{ url_for('wiki.create') }}">New</a>
-{% endif %} {% endblock %} {% block content %}
 
-<article class="article">
-  <header>
-    <div>
-      <h2>{{ art['title'] }}</h2>
-      <div class="about">
-        by {{ art['username'] }} on {{ art['created'].strftime('%Y-%m-%d')}}
-      </div>
+<div class="container">
+<!-- Button to add new article -->
+    {% if g.user %}
+    <a class="action btn-small pink accent-3 text-btn" href="{{ url_for('wiki.create') }}">New</a>
+    {% endif %} {% endblock %} 
+    
+
+    {% block content %}
+    <div class="row">
+        <!-- Side image -->
+        <div class="image-text-container col s2">
+            <div class="image-left">
+                <img src="../../static/img/doll-2.jpg" height="300"alt="">
+            </div>
+        </div>
+        <!-- Details of article -->
+        <article class="article center-align col s8">
+            <header>
+                <div>
+                    <h2>{{ art['title'] }}</h2>
+                <!-- user and date of article -->
+                    <div class="about">
+                    by {{ art['username'] }} on {{ art['created'].strftime('%Y-%m-%d')}}
+                    </div>            
+                </div>
+                <!-- If author of article, edit button appears-->
+                {% if g.user['id'] == art['author_id']%}
+                <a class="action btn-small pink accent-3 center-align text-btn" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
+                {% endif %}
+            </header>
+            <p class="body">{{ art['summary'] }}</p>
+            <p class="body">{{ art['img'] }}</p>
+            <p class="body">{{ art['body'] }}</p>
+            <!-- Add comment button -->
+            <button class="btn-small pink accent-3 center-align ">
+                <a class="text-btn "href="{{ url_for('wiki.create_comment', id=art['id']  )}}">
+                    Add Comment
+                </a>
+            </button>        
+        </article>
+        <!-- Side image -->
+        <div class="image-text-container col s2 ">
+            <div class="image-right">
+                <img src="../../static/img/doll-2.jpg" height="300" alt="">
+            </div>
+        </div>
     </div>
-    {% if g.user['id'] == art['author_id']%}
-    <a class="action" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
-    {% endif %}
-  </header>
-    <p class="body">{{ art['summary'] }}</p>
-    <p class="body">{{ art['img'] }}</p>
-    <p class="body">{{ art['body'] }}</p>
-</article>
-<button class="waves-effect waves-light btn-small pink lighten-2">
-    <a href="{{ url_for('wiki.create_comment', id=art['id']  )}}">
-        Add Comment
-    </a>
-</button>
+</div>
 {% if comments %}
     {% for comment in comments %}
     <h6>{{comment.username}} {{comment.created}}</h6>
