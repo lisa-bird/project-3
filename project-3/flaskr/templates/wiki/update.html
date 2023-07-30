@@ -1,22 +1,24 @@
 {% extends 'base.html' %} {% block header %}
 
-<h1>{% block title %}Edit "{{ article['title'] }}"{% endblock %}</h1>
+<h1>{% block title %}Update "{{ article['title'] }}"{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-    <form class="art-form" method="post">
-        <label for="title">Title</label>
+<div class="container">
+    <div class="row">
+    <form class="art-form center-align s6 m4" method="post">
+        <label class="text-form" for="title">Title</label>
         <input name="title"id="title" value="{{ request.form['title'] or article['title'] }}"
             type="text" required/>
 
-        <label for="body">Body</label>
+        <label class="text-form" for="body">Body</label>
         <textarea class="in-box"name="body" id="body">
         {{ request.form['body'] or article['body'] }}</textarea>
 
-        <label for="summary">Summary</label>
+        <label class="text-form" for="summary">Summary</label>
         <textarea class="in-box" name="summary" id="summary">{{ request.form['summary'] }}</textarea>
         
-        <label for="img">Image</label>
+        <label class="text-form" for="img">Image</label>
         <textarea class="in-box" value="img_placeholder" name="img" id="img">
         {{ request.form['img'] }}</textarea>
         <!-- <label for="body">Body</label> -->
@@ -24,7 +26,9 @@
     </form>
     <hr />
     <form action="{{ url_for('wiki.delete', id=article['id']) }}" method="post">
-        <input class="danger btn-small pink darken-4"type="submit"
+        <input class="btn-small pink darken-4"type="submit"
             value="Delete" onclick="return confirm('Are you sure?');"/>
     </form>
+    </div>
+    </div>
 {% endblock %}

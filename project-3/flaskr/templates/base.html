@@ -62,11 +62,7 @@
       <li><a href="{{ url_for('auth.register') }}">Register</a></li>
       <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
     </ul>
-
-    <div class="hero-image">
-             
-    </div>
-
+   
     <section class="content">
       <header>{% block header %}{% endblock %}</header>
       {% for message in get_flashed_messages() %}

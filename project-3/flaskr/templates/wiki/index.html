@@ -1,6 +1,14 @@
 {% extends 'base.html' %} {% block header %}
+<img src="../../static/img/background-2.jpg" class="responsive-img intro-img" alt="">
 <h2>{% block title %}Welcome to the Barbie Wiki{% endblock %}</h2>
+<p class="intro">Welcome to the mesmerizing world of Barbie! This Wiki is your ultimate guide
+    to all thing Barbie related. Delve into the history of the Barbie doll, the
+    vast collection of fashion and the much anticipated Barbie movie. Whether
+    you're a long-tim Barbie enthusiast or a newcomer.
+    Join us in celebrating the timeless allure of Barbie. Register now! </p>
+
 {% if g.user %}
+
 <!-- Button to add new article -->
 <a class="btn-small pink accent-3 action btn-size" href="{{ url_for('wiki.create') }}">Add New Article</a>
 {% endif %} {% endblock %} 
