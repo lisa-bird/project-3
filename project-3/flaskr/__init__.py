@@ -10,7 +10,13 @@ def create_app(test_config=None):
         SECRET_KEY='p2@fVP?BxP:Z,[(v',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
-    
+    if os.environ.get("DEVELOPMENT") == "True":
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+    else:
+         uri = os.environ.get("DATABASE_URL")
+     if uri.startswith("postgres://"):
+         uri = uri.replace("postgres://", "postgresql://", 1)
+     app.config["SQLALCHEMY_DATABASE_URI"] = uri
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
