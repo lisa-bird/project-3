@@ -15,9 +15,10 @@ bp = Blueprint('wiki', __name__)
 def index():
     db = get_db()
     articles = db.execute(
-        'SELECT p.id, title, body, created, author_id, username, summary, img'
-        ' FROM article p JOIN user u ON p.author_id = u.id'
-        ' ORDER BY created DESC'
+        'SELECT a.id as id, a.title as title, a.created as created, a.author_id as author, u.username as username, a.summary as summary, a.img as image, COUNT(c.id) AS comment_count'
+        ' FROM article a  LEFT JOIN user u ON a.author_id = u.id LEFT JOIN comment c ON a.id = c.article_id'
+        ' GROUP BY a.id'
+        ' ORDER BY a.created DESC'
     ).fetchall()
 
     return render_template('wiki/index.html', articles=articles)
@@ -155,21 +156,6 @@ def delete(id):
     db.execute('DELETE FROM article WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('wiki.index'))
-
-
-'''
-# ----------- Image Upload
-@bp.route('/upload', methods=('GET', 'POST'))
-def image_upload():
-    up = None
-    if request.method == 'POST':
-        f = request.files['file']
-        filename = secure_filename(f.filename)
-        up = f"{bp.root_path}/static/Uploads/{filename}"
-        f.save(up)
-        return render_template()
-    return render_template('wiki/uploaded.html', filename=f.filename)
-'''
 
 
 @bp.route('/upload/<filename>')

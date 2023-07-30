@@ -8,11 +8,11 @@
     Join us in celebrating the timeless allure of Barbie. Register now! </p>
 
 {% if g.user %}
-
+<button class="btn-small pink accent-3">
 <!-- Button to add new article -->
-<a class="btn-small pink accent-3 action btn-size" href="{{ url_for('wiki.create') }}">Add New Article</a>
+<a class="action text-btn" href="{{ url_for('wiki.create') }}">Add New Article</a>
 {% endif %} {% endblock %} 
-
+</button>
 {% block content %}
 <!-- Card displaying summary of article -->
 <div class="row">
@@ -21,8 +21,8 @@
   <div class="col s6 m3">
     <div class="card">
       <div class="card-image">
-        <img height="256" src="{{ url_for('wiki.uploaded_file', filename=art['img']) }}"/>
-        <span class="card-title">{{ art['title'] }}</span>
+        <img height="256" src="{{ url_for('wiki.uploaded_file', filename=art['image']) }}"/>
+        <span class="card-title title-col">{{ art['title'] }}</span>
       </div>
       <div class="card-content">
         <p>{{ art['summary'] }}</p>
@@ -33,12 +33,13 @@
             Detail 
             </a>        
         </button>
-        <!-- If author of article, dit button will appear -->
-        {% if g.user['id'] == art['author_id']%}
-        <a class="btn-small pink accent-3 action right" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
+        
+        <!-- If author of article, edit button will appear -->
+        {% if g.user['id'] == art['author']%}
+        <a class="btn-small pink accent-3 action right edit-btn" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
         {% endif %}
       <div>
-            Add count of comments!
+            There are {{art['comment_count']}} comments
       </div>
     </div>
   </div>

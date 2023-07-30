@@ -1,11 +1,16 @@
 {% extends 'base.html' %} {% block header %}
-<h1>{% block title %}Register{% endblock %}</h1>
+<h1 class="center-align">{% block title %}Register{% endblock %}</h1>
 {% endblock %} {% block content %}
-<form method="post">
-  <label for="username">Username</label>
+
+<div class="container">
+    <div class="row">
+<form class="art-form center-align s8 m4" method="post">
+  <label class="text-form" for="username">Username</label>
   <input name="username" id="username" required />
-  <label for="password">Password</label>
+  <label class="text-form" for="password">Password</label>
   <input type="password" name="password" id="password" required />
-  <input type="submit" value="Register" />
+  <input class="btn-small pink accent-3 btn-pad" type="submit" value="Register" />
 </form>
+    </div>
+    </div>
 {% endblock %}
