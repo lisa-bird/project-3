@@ -1,1 +1,1 @@
-web: python wiki.py
+web: python __init__.py
