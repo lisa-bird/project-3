@@ -1,0 +1,14 @@
+blinker==1.6.2
+click==8.1.6
+coverage==7.2.7
+dnspython==2.4.1
+Flask==2.3.2
+Flask-PyMongo==2.3.0
+-e git+https://github.com/lisa-bird/project-3@1f01dc11c673585b7c4a64f8065833111d3eca4d#egg=flaskr&subdirectory=project-3
+iniconfig==2.0.0
+itsdangerous==2.1.2
+pluggy==1.2.0
+psycopg2==2.9.6
+pymongo==4.4.1
+pytest==7.4.0
+Werkzeug==2.3.6
