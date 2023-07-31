@@ -11,6 +11,7 @@ from flaskr.db import get_db
 bp = Blueprint('wiki', __name__)
 
 
+# ---- Index view
 @bp.route('/')
 def index():
     db = get_db()
@@ -24,11 +25,11 @@ def index():
     return render_template('wiki/index.html', articles=articles)
 
 
+# ---- Create View
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
-    if request.method == 'POST':
-        # update when template is modified
+    if request.method == 'POST':        
         title = request.form['title']
         body = request.form['body']
         summary = request.form['summary']
@@ -77,13 +78,13 @@ def get_article(id, check_author=True):
     return article
 
 
+# ---- Update view
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
     article = get_article(id)
 
-    if request.method == 'POST':
-        # need to include summary and img
+    if request.method == 'POST':        
         title = request.form['title']
         body = request.form['body']
         error = None
@@ -105,9 +106,8 @@ def update(id):
 
     return render_template('wiki/update.html', article=article)
 
-# Detail view
 
-
+# ---- Detail view
 @bp.route('/<int:id>', methods=('GET',))
 @login_required
 def detail(id):
@@ -121,9 +121,8 @@ def detail(id):
     ).fetchall()
     return render_template('wiki/detail.html', art=article, comments=comments)
 
-# ----------- Comment
 
-
+# ---- Create comment view
 @bp.route('/create_comment/<int:id>', methods=('POST', 'GET'))
 @login_required
 def create_comment(id):
@@ -145,9 +144,8 @@ def create_comment(id):
         return redirect(url_for('wiki.detail', id=id))
     return render_template('wiki/create_comment.html')
 
-# ----------- Delete
 
-
+# ---- Delete
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
@@ -158,6 +156,7 @@ def delete(id):
     return redirect(url_for('wiki.index'))
 
 
+# ---- Upload
 @bp.route('/upload/<filename>')
 def uploaded_file(filename):
     return send_from_directory(f"{bp.root_path}/static/Uploads", filename)

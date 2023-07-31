@@ -35,12 +35,12 @@
     <!--Side nav-->
         <ul class="sidenav" id="mobile-demo">
             <li><h4 class="center-align light-blue-text text-darken 4">Barbie</h4></li>
-            {% if g.user %}
+            
             <li><span>{{ g.user['username'] }}</span></li>
             <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
             <li><a href="{{ url_for('auth.register') }}">Register</a></li>
             <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-            {% endif %}
+            
         </ul>
    
     <section class="content">

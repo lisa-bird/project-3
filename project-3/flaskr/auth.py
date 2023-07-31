@@ -11,6 +11,7 @@ from flaskr.db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
+# ---- Register
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
@@ -41,6 +42,7 @@ def register():
     return render_template('auth/register.html')
 
 
+# ---- Login
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
@@ -79,6 +81,7 @@ def load_logged_in_user():
         ).fetchone()
 
 
+# ---- Logout
 @bp.route('/logout')
 def logout():
     session.clear()

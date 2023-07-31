@@ -90,7 +90,6 @@ def update(id):
 
     return render_template('blog/update.html', post=post)
 
-
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
