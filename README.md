@@ -1,39 +1,175 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+[Visit the website here](https://)
 
-Welcome,
 
-This is the Code Institute student template for Codeanywhere. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **May 11th, 2023**
+Milestone project three calls for a full-stack site that allows users to manage common dataset about a particular domain. 
+With the release of the highly anticipated new Barbie movie, I wanted to create a Barbie inspired wiki. Allowing users to read articles about all things Barbie, create their own articles and comment on others.
+ 
+# Owners Goal
 
-## Codeanywhere Reminders
+To create a community driven platform for Barbie fans, from long-term fans to new upcoming fans. These fans can contribute to the wiki by adding new articles, editing them where needed and participate in discussions. Ultimately creating a vibrant and welcoming wiki for users to enjoy.
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+# Audience
 
-`python3 -m http.server`
+The audience will include male and female, young and mature. Barbie has been around for many years, since 1959, generating a plethera of fans.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+# UX
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+## The Strategy
 
-`http_server`
+Business goals include gaining traffic to the website. The site will be very pink and all things Barbie related. To keep the audience engaged the articles will be current, fun and informative. There will be a wide range from the history of Barbie to the realease and cast of the new movie.
+The website features include:
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+* User registration.
+* Log in / Log out.
+* Create new article.
+* Edit that article, only the articles author can edit.
+* Read the full article.
+* Comment on articles. 
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+## The Scope
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+The Barbie wiki is designed for Barbie enthusiasts, collectors and fans of all ages. The wiki will cover a range of topics related to Barbie from the movie to dolls, to merchandise and history. The wiki will encourage collaborations and contributions from a diverse group of users, who share a common interest in Barbie.
 
-To log into the Heroku toolbelt CLI:
+## The Structure
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The navigation is clear at the top of the page with register and login labelled. Once the user has registered and logged in. The articles are displayed on the landing page. The landing page displays a brief paragraph of what the site is about, informing users to register. Articles are displayed in cards showing the summary and the image. The detail button allows users to click and read the full article. Users can then comment on each others articles. The number of comments on each article is displayed on the summary card.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## The Skeleton
 
----
+The wiki site has a number of pages clearly labelled in the nav bar. Along with pink buttons to take users to the relevant page.
+The wiki is responsive to be able to use on small and large devices.***
 
-Happy coding!
+[Wire Frames](https://www.figma.com/file/6v5uI3eQwyMpaT7VljDYJ1/Mobile-%2B-Tablet-%2B-Browser-Templates-(Community)?type=design&node-id=3%3A114&t=hXE7aUpXJi6QkzUR-1)
+
+[Flow Chart](/assets/images/flow-chart1.jpg)
+
+## The Surface
+
+Keeping with the 90s vibe I wanted to use a bubble style font for the main heading but also making sure it was readable on the site. For the body of text I opted for a simple sans serif font 'Work Sans'.  
+
+![Heading Font](/assets/images/font2.jpg)
+
+![Body Font](/assets/images/font1.jpg)
+
+ The colours are consistent throughout the quiz, taking inspiration from the 90s style background.  
+
+![Colour Palette](/assets/images/colours.jpg)
+
+# Features left to implement
+
+* In this version I have used alert pop up boxes. These should be replaced with dialog modal boxes, to give an option to end game or restart game. Having the dialog boxes would make a better UX design. Time constraints have prevented me from developing these. I may add these in the future.
+
+# Technologies Used
+
+To help me create this website I used these technologies:
+
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [Boostrap v5.3](https://getbootstrap.com/)
+* [W3Schools](https://www.w3schools.com/)
+* [Google Fonts](https://fonts.google.com/)
+* [Google Developer Tools](https://developer.chrome.com/docs/devtools/)
+* [Github](https://github.com/)
+* [W3C Markup Validation Service](https://validator.w3.org/)
+* [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator)
+* [JSlint](https://www.jslint.com/)
+
+# Testing
+
+Tests are used in web development to ensure the code works as expected.
+
+### The principles of automated testing are
+
+* Testing is performed using different automation tools, such as Jest.
+* These tests are usually written by the programmer while the project is being developed, meaning errors will be picked up promptly
+* It is often quicker to use. Hundreds of tests can be run against a project in a short amount of time.
+* These tests are used for repetitive tasks.
+* Tests can be written for very specific cases.
+* Tests should improve quality.
+* Automated tests help you understand the code.
+
+### Manual testing
+
+* Testing is performed manually by humans.
+* This form of testing is effective for evaluating the usability and intuitiveness of the UI. Testers can provide feedback based on their experience.
+* This form of testing can take longer than automated.
+* As with automated testing, manual testing can be used for very specific cases, where testers may need to improvise and stimulate user interactions.
+* Manual testing allows testers to gather direct feedback from end users during the testing process, which can help improve the UX.
+
+Testing should be deployed thoughout the entire project, rather than a one-time event. This will help ensure the quality, stability and usabilty of the web development.
+
+# Manual testing for my project
+
+I have used manual testing, as my project has only two simple, event-driven functions.
+
+As a result of testing, I decided to move the 'Next' button to the center of the container for desktop and laptop devices. With this change the wire frame does not match the end result.
+Also deciding that the score-board is more visually appealing in the same row as the timer.
+
+Both of these decisions improve the UX for the end-user.
+
+![Further testing](/assets/images/further-testing.jpg)
+
+# User Stories
+
+## User - 1
+
+First time visitor wants to understand what the purpose of the website is.
+
+* Landing page shows a large heading '90s Trivia Quiz'  
+
+![Landing page](/assets/images/user-1.jpg)
+
+## User - 2
+
+First time visitor wants to be able to read the instructions before pressing start.
+
+* Landing page has the instructions visible and easy to read, see above image.
+
+## User - 3
+
+First time visitor would like to know if their selected answer is right or wrong.
+
+* When selecting your answer the colour of the answer will turn green for correct or red for incorrect, along with a message.
+
+![Answers](/assets/images/user-3.jpg)
+
+## User - 4
+
+First time visitor wnats to know how many points they have achieved during the quiz.
+
+* A score board is displayed underneath the answers, incrementing each time for a correct or incorrect answer, see above image.
+
+## User - 5
+
+First time visitor wants to know what happens if they do not answer within the time frame of 10 seconds.
+
+* A pop-up alert will be displayed when out of time.
+
+![Time out](/assets/images/user-5.jpg)
+
+# Validation
+
+CSS
+![CSS](/assets/images/css-valid.jpg)
+
+HTML
+![HTML](/assets/images/html-valid.jpg)
+JSlint
+![JSlint](/assets/images/jslint-a.jpg)
+
+![JSlint](/assets/images/jslint-b.jpg)
+
+# Deployment
+
+This website is deployed using Github. This can be done by  following these stages.
+
+1. On GitHub, navigate to your site's repository.
+2. Select the 'milestone project 2' repository.
+3. In the menu along the top of the repository, click 'Settings'
+4. In the menu to the left, half way down, select 'Pages'
+5. Under 'Build and deployment', under the 'Source', select Deploy from a branch.
+6. Under the 'Branch' section, select Branch drop-down menu and select main.
+7. Click ***Save***.
+
+![Deployment](/assets/images/deploy1.jpg)
