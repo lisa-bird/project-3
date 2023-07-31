@@ -1,15 +1,15 @@
-[Visit the website here](https://)
+# Milestone Project-3 Barbie Wiki
 
+![Mock up](/project-3/flaskr/static/img/mock-up.jpg)
 
-
-Milestone project three calls for a full-stack site that allows users to manage common dataset about a particular domain. 
+Milestone project three calls for a full-stack site that allows users to manage common dataset about a particular domain.
 With the release of the highly anticipated new Barbie movie, I wanted to create a Barbie inspired wiki. Allowing users to read articles about all things Barbie, create their own articles and comment on others.
- 
-# Owners Goal
+
+## Owners Goal
 
 To create a community driven platform for Barbie fans, from long-term fans to new upcoming fans. These fans can contribute to the wiki by adding new articles, editing them where needed and participate in discussions. Ultimately creating a vibrant and welcoming wiki for users to enjoy.
 
-# Audience
+## Audience
 
 The audience will include male and female, young and mature. Barbie has been around for many years, since 1959, generating a plethera of fans.
 
@@ -25,7 +25,7 @@ The website features include:
 * Create new article.
 * Edit that article, only the articles author can edit.
 * Read the full article.
-* Comment on articles. 
+* Comment on articles.
 
 ## The Scope
 
@@ -38,27 +38,29 @@ The navigation is clear at the top of the page with register and login labelled.
 ## The Skeleton
 
 The wiki site has a number of pages clearly labelled in the nav bar. Along with pink buttons to take users to the relevant page.
-The wiki is responsive to be able to use on small and large devices.***
+The wiki is responsive to be able to use on small and large devices.
 
-[Wire Frames](https://www.figma.com/file/6v5uI3eQwyMpaT7VljDYJ1/Mobile-%2B-Tablet-%2B-Browser-Templates-(Community)?type=design&node-id=3%3A114&t=hXE7aUpXJi6QkzUR-1)
+[Wire Frames](https://www.figma.com/file/hSTlhp779Rip0GVPMj0gEr/Untitled?type=design&node-id=0-1&mode=design)
 
-[Flow Chart](/assets/images/flow-chart1.jpg)
+
 
 ## The Surface
 
-Keeping with the 90s vibe I wanted to use a bubble style font for the main heading but also making sure it was readable on the site. For the body of text I opted for a simple sans serif font 'Work Sans'.  
+To maintain the Barbie theme, the site uses consistent colouring of pink. I have chosen a Google font that is similar to the Barbie officail font for headings and the nav bar. For the text body a playful rounded font was chosen.
 
-![Heading Font](/assets/images/font2.jpg)
+Heading Font
+![Heading Font](/project-3/flaskr/static/img/h-font.jpg)
 
-![Body Font](/assets/images/font1.jpg)
+Body Font
+![Body Font](/project-3/flaskr/static/img/body-font.jpg)
 
- The colours are consistent throughout the quiz, taking inspiration from the 90s style background.  
+ The colours are consistent throughout the wiki. 
 
-![Colour Palette](/assets/images/colours.jpg)
+![Colour Palette](/project-3/flaskr/static/img/colour.jpg)
 
 # Features left to implement
 
-* In this version I have used alert pop up boxes. These should be replaced with dialog modal boxes, to give an option to end game or restart game. Having the dialog boxes would make a better UX design. Time constraints have prevented me from developing these. I may add these in the future.
+* Features that are left to implement include 'admin rights' and a search or filter option. Time constraints have prevented me from developing these. These may be added in the future.
 
 # Technologies Used
 
@@ -66,38 +68,76 @@ To help me create this website I used these technologies:
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-* [Boostrap v5.3](https://getbootstrap.com/)
+* [Materialize 1.0.0](https://materializecss.com/)
 * [W3Schools](https://www.w3schools.com/)
 * [Google Fonts](https://fonts.google.com/)
 * [Google Developer Tools](https://developer.chrome.com/docs/devtools/)
 * [Github](https://github.com/)
 * [W3C Markup Validation Service](https://validator.w3.org/)
 * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator)
-* [JSlint](https://www.jslint.com/)
+* [Flask](https://flask.palletsprojects.com/en/2.3.x/)
+* [Stack Overflow](https://stackoverflow.com/)
+
+# Data Schema
+
+The data schema consists of tables. Each table is defined with spefic columns to store information related to users, articles and comments.
+![User table](/project-3/flaskr/static/img/data-user.jpg)
+
+As you can see from the screenshot above the 'id' is a unique identifier for each user. The username must be unique and cannot be Null.
+
+![Article table](/project-3/flaskr/static/img/data-art.jpg)
+
+Again a unique 'id' for each article. 'author_id': Foreign key referencing the 'id' column of the 'user' table, defining the author of the article. 'created' The timestamp of when the article was created, cannot be Null. 'title' 'summary' 'body' all cannot be Null. 'img' A field for storing the image associated with the article.
+
+![Comments table](/project-3/flaskr/static/img/data-com.jpg)
+
+Similar to the article table with the addition of 'article_id': Foreign key referencing the 'id' column of the article table. Identifying the article to which the comment belongs to.
 
 # Testing
 
 Tests are used in web development to ensure the code works as expected.
+Tests have been created to cover:
 
-### The principles of automated testing are
+* Basic functionality testing.
+* User authentication and authorisation.
+* Data retrieval and storage.
+* Error hansdling.
+* User interface and responsiveness.
 
-* Testing is performed using different automation tools, such as Jest.
-* These tests are usually written by the programmer while the project is being developed, meaning errors will be picked up promptly
-* It is often quicker to use. Hundreds of tests can be run against a project in a short amount of time.
-* These tests are used for repetitive tasks.
-* Tests can be written for very specific cases.
-* Tests should improve quality.
-* Automated tests help you understand the code.
+The testing is comprised of unit test using Pytest and testing the whole application, simulating user interaction.
 
-### Manual testing
+1.Functionality:
 
-* Testing is performed manually by humans.
-* This form of testing is effective for evaluating the usability and intuitiveness of the UI. Testers can provide feedback based on their experience.
-* This form of testing can take longer than automated.
-* As with automated testing, manual testing can be used for very specific cases, where testers may need to improvise and stimulate user interactions.
-* Manual testing allows testers to gather direct feedback from end users during the testing process, which can help improve the UX.
+Verify that the home page displays correctly with the nar bar clearly showing navigation.
+Confirm that clicking on register and log in are functioning.
+Test the creating, editing, deleting and adding comments to articles.
+Counts the number of comments attached to each article.
 
-Testing should be deployed thoughout the entire project, rather than a one-time event. This will help ensure the quality, stability and usabilty of the web development.
+2.User Authentication:
+
+Verify that registered users can log in and access articles. Authors of articles can edit and delete their article, whereas no one else can.
+Check that unathorised users are directed to the registration page.
+Ensure that users can view all articles but only edit their own.
+
+3.Data Retrival and Storage
+
+Test fetching articles and ensure their content is correct.
+Verify that edits to articles are correctly stored in the database.
+
+4.Error Handling
+
+Test the behaviour when a user is already registered
+Test handling of incorrect password
+Test the behaviour when a user attempts to delete articles that are not their own.
+
+5.UI and responsivness
+
+Verify the responsiveness of the application on different devices and screen sizes.
+Test user interactions, input fields and button clicks.
+
+# Unit tests
+
+![Unit testing](/project-3/flaskr/static/img/unit-test.jpg)
 
 # Manual testing for my project
 
@@ -108,7 +148,7 @@ Also deciding that the score-board is more visually appealing in the same row as
 
 Both of these decisions improve the UX for the end-user.
 
-![Further testing](/assets/images/further-testing.jpg)
+![Further testing]()
 
 # User Stories
 
@@ -116,37 +156,39 @@ Both of these decisions improve the UX for the end-user.
 
 First time visitor wants to understand what the purpose of the website is.
 
-* Landing page shows a large heading '90s Trivia Quiz'  
+* Landing page shows a large heading with paragraph, clear register tab in nav.
 
-![Landing page](/assets/images/user-1.jpg)
+![Landing page](/project-3/flaskr/static/img/user-story-1.jpg)
 
 ## User - 2
 
-First time visitor wants to be able to read the instructions before pressing start.
+First time visitor wants to be able to see some articles before they register. Articles are visible but user can not read them or add new article without registering and logging in.
 
-* Landing page has the instructions visible and easy to read, see above image.
+![Landing page](/project-3/flaskr/static/img/user-story-2.jpg)
 
 ## User - 3
 
-First time visitor would like to know if their selected answer is right or wrong.
+First time visitor has registered and logged in. They can add an article and read the existing articles, commenting if they wish.
 
-* When selecting your answer the colour of the answer will turn green for correct or red for incorrect, along with a message.
-
-![Answers](/assets/images/user-3.jpg)
+![User-3](/project-3/flaskr/static/img/user-story-3.jpg)
 
 ## User - 4
 
-First time visitor wnats to know how many points they have achieved during the quiz.
+The author of an article wants to update the information. This can only be done by the author, the edit button will be visible, taking the user to the correct view. The user can also delete the article form here.
 
-* A score board is displayed underneath the answers, incrementing each time for a correct or incorrect answer, see above image.
+![User-4](/project-3/flaskr/static/img/user-story-4.jpg)
 
 ## User - 5
 
-First time visitor wants to know what happens if they do not answer within the time frame of 10 seconds.
+First time visitor wants to Be able to read the full article and see when it was posted and by whom
 
-* A pop-up alert will be displayed when out of time.
+![User-5](/project-3/flaskr/static/img/user-story-5.jpg)
 
-![Time out](/assets/images/user-5.jpg)
+## User - 6
+
+First time users and existing users want to be able to comment on articles, developing a community. The comment button takes them to the comment view.
+
+![User-6](/project-3/flaskr/static/img/user-story-6.jpg)
 
 # Validation
 
@@ -161,15 +203,3 @@ JSlint
 ![JSlint](/assets/images/jslint-b.jpg)
 
 # Deployment
-
-This website is deployed using Github. This can be done by  following these stages.
-
-1. On GitHub, navigate to your site's repository.
-2. Select the 'milestone project 2' repository.
-3. In the menu along the top of the repository, click 'Settings'
-4. In the menu to the left, half way down, select 'Pages'
-5. Under 'Build and deployment', under the 'Source', select Deploy from a branch.
-6. Under the 'Branch' section, select Branch drop-down menu and select main.
-7. Click ***Save***.
-
-![Deployment](/assets/images/deploy1.jpg)
