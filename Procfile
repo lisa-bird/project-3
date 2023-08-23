@@ -1,1 +1,1 @@
-web: python project-3/flaskr/__init__.py
+web: python flaskr/__init__.py
