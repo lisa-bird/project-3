@@ -1,49 +1,56 @@
-{% extends 'base.html' %} {% block header %}
-<img src="../../static/img/background-2.jpg" class="responsive-img intro-img" alt="Barbie logo and silouette">
-<h2>{% block title %}Welcome to the Barbie Wiki{% endblock %}</h2>
-<p class="intro">Welcome to the mesmerizing world of Barbie! This Wiki is your ultimate guide
-    to all thing Barbie related. Delve into the history of the Barbie doll, the
-    vast collection of fashion and the much anticipated Barbie movie. Whether
-    you're a long-time Barbie enthusiast or a newcomer.
-    Join us in celebrating the timeless allure of Barbie. Click Register now!</p>
+{% extends 'base.html' %} 
+{% block header %}
 
-{% if g.user %}
-<button class="btn-small pink accent-3">
-<!-- Button to add new article -->
-<a class="action text-btn" href="{{ url_for('wiki.create') }}">Add New Article</a>
-{% endif %} {% endblock %} 
-</button>
-{% block content %}
-<!-- Card displaying summary of article -->
-<div class="row">
-    <!-- Iterating through articles -->
-  {% for art in articles %}
-  <div class="col s6 m3">
-    <div class="card">
-      <div class="card-image">
-        <img height="256" src="{{ url_for('wiki.uploaded_file', filename=art['image']) }}"/>
-        <span class="card-title title-col">{{ art['title'] }}</span>
-      </div>
-      <div class="card-content">
-        <p>{{ art['summary'] }}</p>
-      </div>
-        <!-- Button to take user to full article -->
-        <button class="btn-small pink accent-3">
-            <a class= "action text-btn" href="{{ url_for('wiki.detail', id=art['id']) }}">
-            Detail 
-            </a>        
-        </button>
-        
-        <!-- If author of article, edit button will appear -->
-        {% if g.user['id'] == art['author']%}
-        <a class="btn-small pink accent-3 action right edit-btn" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
-        {% endif %}
-      <div>
-            There are {{art['comment_count']}} comments
-      </div>
+    <img src="../../static/img/background-2.jpg" class="responsive-img intro-img" alt="Barbie logo and silouette">
+
+    <h2>{% block title %}Welcome to the Barbie Wiki{% endblock %}</h2>
+    <p class="intro">
+        Welcome to the mesmerizing world of Barbie! This Wiki is your ultimate guide
+        to all thing Barbie related. Delve into the history of the Barbie doll, the
+        vast collection of fashion and the much anticipated Barbie movie. Whether
+        you're a long-time Barbie enthusiast or a newcomer.
+        Join us in celebrating the timeless allure of Barbie. Click Register now!
+    </p>
+
+    {% if g.user %}
+    <button class="btn-small pink accent-3">
+        <!-- Button to add new article -->
+        <a class="action text-btn" href="{{ url_for('wiki.create') }}">Add New Article</a>
+        {% endif %} {% endblock %}
+    </button>
+    {% block content %}
+    <!-- Card displaying summary of article -->
+    
+    <div class="row">
+        <!-- Iterating through articles -->
+        {% for art in articles %}
+        <div class="col s6 m3">
+            <div class="card">
+                <div class="card-image">
+                    <img height="256" src="{{ url_for('wiki.uploaded_file', filename=art['image']) }}" />
+                    <span class="card-title title-col">{{ art['title'] }}</span>
+                </div>
+                <div class="card-content">
+                    <p>{{ art['summary'] }}</p>
+                </div>
+                <!-- Button to take user to full article -->
+                <button class="btn-small pink accent-3">
+                    <a class="action text-btn" href="{{ url_for('wiki.detail', id=art['id']) }}">
+                        Detail
+                    </a>
+                </button>
+
+                <!-- If author of article, edit button will appear -->
+                {% if g.user['id'] == art['author']%}
+                <a class="btn-small pink accent-3 action right edit-btn"
+                    href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
+                {% endif %}
+                <div>
+                    There are {{art['comment_count']}} comments
+                </div>
+            </div>
+        </div>
+    
+        {% endfor %}
     </div>
-  </div>
-{% endfor %}
-</div>
 {% endblock %}
-

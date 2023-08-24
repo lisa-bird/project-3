@@ -87,6 +87,7 @@ def update(id):
     if request.method == 'POST':        
         title = request.form['title']
         body = request.form['body']
+        summary = request.form['summary']
         error = None
 
         if not title:
@@ -99,7 +100,7 @@ def update(id):
             db.execute(
                 'UPDATE article SET title = ?, body = ?, summary = ?, img = ?'
                 ' WHERE id = ?',
-                (title, body, "summary_ph", "img_ph", id)
+                (title, body, summary, "img_ph", id)
             )
             db.commit()
             return redirect(url_for('wiki.index'))
