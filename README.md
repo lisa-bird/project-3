@@ -1,6 +1,6 @@
 # Milestone Project-3 Barbie Wiki
 
-![Mock up](/project-3/flaskr/static/img/mock-up.jpg)
+![Mock up](/flaskr/static/img/mock-up.jpg)
 
 Milestone project three calls for a full-stack site that allows users to manage common dataset about a particular domain.
 With the release of the highly anticipated new Barbie movie, I wanted to create a Barbie inspired wiki. Allowing users to read articles about all things Barbie, create their own articles and comment on others.
@@ -49,14 +49,14 @@ The wiki is responsive to be able to use on small and large devices.
 To maintain the Barbie theme, the site uses consistent colouring of pink. I have chosen a Google font that is similar to the Barbie officail font for headings and the nav bar. For the text body a playful rounded font was chosen.
 
 Heading Font
-![Heading Font](/project-3/flaskr/static/img/h-font.jpg)
+![Heading Font](/flaskr/static/img/h-font.jpg)
 
 Body Font
-![Body Font](/project-3/flaskr/static/img/body-font.jpg)
+![Body Font](/flaskr/static/img/body-font.jpg)
 
  The colours are consistent throughout the wiki. 
 
-![Colour Palette](/project-3/flaskr/static/img/colour.jpg)
+![Colour Palette](/flaskr/static/img/colour.jpg)
 
 # Features left to implement
 
@@ -81,15 +81,15 @@ To help me create this website I used these technologies:
 # Data Schema
 
 The data schema consists of tables. Each table is defined with spefic columns to store information related to users, articles and comments.
-![User table](/project-3/flaskr/static/img/data-user.jpg)
+![User table](/flaskr/static/img/data-user.jpg)
 
 As you can see from the screenshot above the 'id' is a unique identifier for each user. The username must be unique and cannot be Null.
 
-![Article table](/project-3/flaskr/static/img/data-art.jpg)
+![Article table](/flaskr/static/img/data-art.jpg)
 
 Again a unique 'id' for each article. 'author_id': Foreign key referencing the 'id' column of the 'user' table, defining the author of the article. 'created' The timestamp of when the article was created, cannot be Null. 'title' 'summary' 'body' all cannot be Null. 'img' A field for storing the image associated with the article.
 
-![Comments table](/project-3/flaskr/static/img/data-com.jpg)
+![Comments table](/flaskr/static/img/data-com.jpg)
 
 Similar to the article table with the addition of 'article_id': Foreign key referencing the 'id' column of the article table. Identifying the article to which the comment belongs to.
 
@@ -137,7 +137,7 @@ Test user interactions, input fields and button clicks.
 
 # Unit tests
 
-![Unit testing](/project-3/flaskr/static/img/unit-test.jpg)
+![Unit testing](/flaskr/static/img/unit-test.jpg)
 
 # Manual testing for my project
 
@@ -158,48 +158,49 @@ First time visitor wants to understand what the purpose of the website is.
 
 * Landing page shows a large heading with paragraph, clear register tab in nav.
 
-![Landing page](/project-3/flaskr/static/img/user-story-1.jpg)
+![Landing page](/flaskr/static/img/user-story-1.jpg)
 
 ## User - 2
 
 First time visitor wants to be able to see some articles before they register. Articles are visible but user can not read them or add new article without registering and logging in.
 
-![Landing page](/project-3/flaskr/static/img/user-story-2.jpg)
+![Landing page](/flaskr/static/img/user-story-2.jpg)
 
 ## User - 3
 
 First time visitor has registered and logged in. They can add an article and read the existing articles, commenting if they wish.
 
-![User-3](/project-3/flaskr/static/img/user-story-3.jpg)
+![User-3](/flaskr/static/img/user-story-3.jpg)
 
 ## User - 4
 
 The author of an article wants to update the information. This can only be done by the author, the edit button will be visible, taking the user to the correct view. The user can also delete the article form here.
 
-![User-4](/project-3/flaskr/static/img/user-story-4.jpg)
+![User-4](/flaskr/static/img/user-story-4.jpg)
 
 ## User - 5
 
 First time visitor wants to Be able to read the full article and see when it was posted and by whom
 
-![User-5](/project-3/flaskr/static/img/user-story-5.jpg)
+![User-5](/flaskr/static/img/user-story-5.jpg)
 
 ## User - 6
 
 First time users and existing users want to be able to comment on articles, developing a community. The comment button takes them to the comment view.
 
-![User-6](/project-3/flaskr/static/img/user-story-6.jpg)
+![User-6](/flaskr/static/img/user-story-6.jpg)
 
 # Validation
 
 CSS
-![CSS](/assets/images/css-valid.jpg)
+![CSS]()
 
 HTML
-![HTML](/assets/images/html-valid.jpg)
-JSlint
-![JSlint](/assets/images/jslint-a.jpg)
+![HTML]()
 
-![JSlint](/assets/images/jslint-b.jpg)
+JSlint
+![JSlint]()
+
+![JSlint]()
 
 # Deployment
