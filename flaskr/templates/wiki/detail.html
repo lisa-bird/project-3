@@ -10,41 +10,50 @@
     </div>
 
     {% block content %}
-<div class="container">
-    <div class="row">
-        
-        <!-- Details of article -->
-        <article class="article center-align s6 m4">
-            <header>
-                <div>
-                    <h2>{{ art['title'] }}</h2>
-                <!-- user and date of article -->
-                    <div class="about">
-                    by {{ art['username'] }} on {{ art['created'].strftime('%Y-%m-%d')}}
-                    </div>            
-                </div>
-                <!-- If author of article, edit button appears-->
-                {% if g.user['id'] == art['author_id']%}
-                <a class="action btn-small pink accent-3 center-align text-btn" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
-                {% endif %}
-            </header>
-            <p class="body">{{ art['summary'] }}</p>
-            <p class="body">{{ art['img'] }}</p>
-            <p class="body">{{ art['body'] }}</p>
-            <!-- Add comment button -->
-            <button class="btn-small pink accent-3 center-align ">
-                <a class="text-btn "href="{{ url_for('wiki.create_comment', id=art['id']  )}}">
-                    Add Comment
-                </a>
-            </button>        
-        </article>
-        
+    <div class="container">
+        <div class="row">
+            
+            <!-- Details of article -->
+            <article class="article center-align s6 m4">
+                <header>
+                    <div>
+                        <h2>{{ art['title'] }}</h2>
+                    <!-- user and date of article -->
+                        <div class="about">
+                        by {{ art['username'] }} on {{ art['created'].strftime('%Y-%m-%d')}}
+                        </div>            
+                    </div>
+                    <!-- If author of article, edit button appears-->
+                    {% if g.user['id'] == art['author_id']%}
+                    <a class="action btn-small pink accent-3 center-align text-btn" href="{{ url_for('wiki.update', id=art['id']) }}">Edit</a>
+                    {% endif %}
+                </header>
+                
+                <p class="body">{{ art['summary'] }}</p>
+                <p class="body">{{ art['img'] }}</p>
+                <p class="body">{{ art['body'] }}</p>
+                
+                <!-- Add comment button -->
+                <button class="btn-small pink accent-3 center-align ">
+                    <a class="text-btn "href="{{ url_for('wiki.create_comment', id=art['id']  )}}">
+                        Add Comment
+                    </a>
+                </button>        
+            </article>            
+        </div>
     </div>
-    </div>
-{% if comments %}
-    {% for comment in comments %}
-    <h6>{{comment.username}} {{comment.created}}</h6>
-        <p>{{comment.body}}</p>
-    {% endfor %}
-{% endif %}
-{% endblock %}
+
+        
+        <div class="container">
+                <div class="row">
+                    {% if comments %}
+                    {% for comment in comments %}
+                        <div class="center-align s6 m4 comment-box">  
+                            <h6>{{comment.username}} {{comment.created}}</h6>
+                            <p>{{comment.body}}</p>
+                        </div>
+                    {% endfor %}
+                    {% endif %}                
+                </div>  
+        </div>
+        {% endblock %}

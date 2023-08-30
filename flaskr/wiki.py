@@ -88,6 +88,8 @@ def update(id):
         title = request.form['title']
         body = request.form['body']
         summary = request.form['summary']
+        img = article['img']
+        print(f"UPDATE>image name used is {img}")
         error = None
 
         if not title:
@@ -100,7 +102,7 @@ def update(id):
             db.execute(
                 'UPDATE article SET title = ?, body = ?, summary = ?, img = ?'
                 ' WHERE id = ?',
-                (title, body, summary, "img_ph", id)
+                (title, body, summary, img, id)
             )
             db.commit()
             return redirect(url_for('wiki.index'))
@@ -112,14 +114,14 @@ def update(id):
 @bp.route('/<int:id>', methods=('GET',))
 @login_required
 def detail(id):
+
     article = get_article(id, check_author=False)
-    db = get_db()
-    comments = db.execute(
+    comments = get_db().execute(
         'SELECT comment.id, body, created, author_id, username'
         ' FROM comment JOIN user ON author_id = user.id'
         ' WHERE article_id = ?',
-        str(id)
-    ).fetchall()
+        (str(id),)
+        ).fetchall()
     return render_template('wiki/detail.html', art=article, comments=comments)
 
 

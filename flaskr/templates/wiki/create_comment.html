@@ -7,11 +7,11 @@
 {% block content %}
 <div class="container">
     <div class="row">
-<form  class="art-form center-align s8 m4"method="post">
-    <label class="text-form" for="body">Comment</label>
-    <textarea class="in-box" name="body" id="body">{{ request.form['body'] }}</textarea>
-    <input class="btn-small pink accent-3" type="submit" value="Save" />
-</form>
+        <form  class="art-form center-align s8 m4"method="post">
+            <label class="text-form" for="body">Comment</label>
+            <textarea class="in-box" name="body" id="body">{{ request.form['body'] }}</textarea>
+            <input class="btn-small pink accent-3" type="submit" value="Save" />
+        </form>
     </div>
 </div>
 {% endblock %}
