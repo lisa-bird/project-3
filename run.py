@@ -1,7 +1,6 @@
 import os
 from flaskr import create_app
-if os.path.exists("env.py"):
-    import env
+
 
 app = create_app()
 
