@@ -21,10 +21,12 @@ Business goals include gaining traffic to the website. The site will be very pin
 The website features include:
 
 * User registration.
+* Users that have not signed in will not be able to add new articles to the wiki.
 * Log in / Log out.
 * Create new article.
-* Edit that article, only the articles author can edit.
 * Read the full article.
+* Update/edit that article, only the articles author can edit.
+* Delete their article.
 * Comment on articles.
 
 ## The Scope
@@ -33,7 +35,7 @@ The Barbie wiki is designed for Barbie enthusiasts, collectors and fans of all a
 
 ## The Structure
 
-The navigation is clear at the top of the page with register and login labelled. Once the user has registered and logged in. The articles are displayed on the landing page. The landing page displays a brief paragraph of what the site is about, informing users to register. Articles are displayed in cards showing the summary and the image. The detail button allows users to click and read the full article. Users can then comment on each others articles. The number of comments on each article is displayed on the summary card.
+The navigation is clear at the top of the page with register and login labelled. Once the user has registered and logged in. The articles are displayed on the landing page. The landing page displays a brief paragraph of what the site is about, informing users to register. Articles are displayed in cards showing the summary and the image. The detail button allows users to click and read the full article. Users can then comment on each others articles. The number of comments on each article is displayed on the summary card. Authors of the articles will have an 'edit' button appear. Here the user can update their article and save it. From here they can also delete their article.
 
 ## The Skeleton
 
@@ -46,7 +48,7 @@ The wiki is responsive to be able to use on small and large devices.
 
 ## The Surface
 
-To maintain the Barbie theme, the site uses consistent colouring of pink. I have chosen a Google font that is similar to the Barbie officail font for headings and the nav bar. For the text body a playful rounded font was chosen.
+To maintain the Barbie theme, the site uses consistent colouring of pink shades. I have chosen a Google font that is similar to the Barbie official font for headings and the nav bar. For the text body a playful rounded font was chosen.
 
 Heading Font
 ![Heading Font](/flaskr/static/img/h-font.jpg)
@@ -77,6 +79,7 @@ To help me create this website I used these technologies:
 * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator)
 * [Flask](https://flask.palletsprojects.com/en/2.3.x/)
 * [Stack Overflow](https://stackoverflow.com/)
+* [Heroku](https://heroku.com/)
 
 # Data Schema
 
@@ -110,7 +113,7 @@ The testing is comprised of unit test using Pytest and testing the whole applica
 
 Verify that the home page displays correctly with the nar bar clearly showing navigation.
 Confirm that clicking on register and log in are functioning.
-Test the creating, editing, deleting and adding comments to articles.
+Test the creating, updating, deleting and adding comments to articles.
 Counts the number of comments attached to each article.
 
 2.User Authentication:
@@ -141,12 +144,12 @@ Test user interactions, input fields and button clicks.
 
 # Manual testing for my project
 
-I have used manual testing, as my project has only two simple, event-driven functions.
-
-As a result of testing, I decided to move the 'Next' button to the center of the container for desktop and laptop devices. With this change the wire frame does not match the end result.
-Also deciding that the score-board is more visually appealing in the same row as the timer.
-
-Both of these decisions improve the UX for the end-user.
+The project was tested on the browsers listed below:
+ * Chrome *v.116.0.5845.111* 
+ * Opera *v.102.0.4871.0*
+ * Firefox *v.117.0*
+ * Safari *v.16.6*
+ * Edge *v.116.0.1938.62*
 
 ![Further testing]()
 
@@ -176,11 +179,11 @@ First time visitor has registered and logged in. They can add an article and rea
 
 The author of an article wants to update the information. This can only be done by the author, the edit button will be visible, taking the user to the correct view. The user can also delete the article form here.
 
-![User-4](/flaskr/static/img/user-story-4.jpg)
+![User-4](/flaskr/static/img/user-story-4a.jpg)
 
 ## User - 5
 
-First time visitor wants to Be able to read the full article and see when it was posted and by whom
+First time visitor wants to be able to read the full article and see when it was posted and by whom
 
 ![User-5](/flaskr/static/img/user-story-5.jpg)
 
@@ -190,17 +193,49 @@ First time users and existing users want to be able to comment on articles, deve
 
 ![User-6](/flaskr/static/img/user-story-6.jpg)
 
+## User - 7
+
+First time users and existing users want to delete the article they have posted.
+
+![User-7](/flaskr/static/img/user-story-7.jpg)
 # Validation
 
 CSS
-![CSS]()
 
-HTML
-![HTML]()
+All CSS was passed through the W3C CSS Validation Service, no errors reported
+![CSS](/flaskr/static/img/css-val1.jpg)
 
-JSlint
-![JSlint]()
+Lighthouse
+![Lighthouse](/flaskr/static/img/lighthouse.jpg)
 
-![JSlint]()
+Pep8
+
+All code is Pep8 compliant, no errors. [Pep8](https://peps.python.org/pep-0008/)
 
 # Deployment
+
+As part of the criteria for this project, the Barbie Wiki has to be deployed to Heroku.
+
+To do this the following must be completed:
+
+1. Create a requirements.txt file so Heroku can install the required dependencies to run the app. This can be done by typing in the terminal.
+   * pip3 freeze --local > requirements.txt
+
+2. Create a Procfile to tell Heroku what type of application is being deployed and how to run it.
+
+   * echo web: python run.py > Procfile
+
+3. Sign up and create a Heroku account. 
+
+4. Select the 'New' tab and click create new app. Insert your app name and choose a region. Click create app.
+
+5. Make your way to the Deploy tab. Select 'Connect to Github' for the deployment method. Select your correct repository and connect to it.
+
+6. Before you click deploy, go to the Settings tab, click on the Reveal Config Vars tab to configure environmental variables. Insert the following
+   * IP:  0,0,0,0
+   * PORT:  5000
+   * DATABASE_NAME:  *Your db name*
+   * SECRET_KEY:  *Your own secret key*
+
+ 7. Go back to the Deployment tab and select 'Deploy Branch'
+

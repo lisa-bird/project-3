@@ -23,11 +23,12 @@
     <!-- Card displaying summary of article -->
     <div class="row rowh">
         <!-- Iterating through articles -->
+        {% if articles %}
         {% for art in articles %}
         <div class="col s6 m3">
             <div class="card medium">
                 <div class="card-image">
-                    <img height="256" src="{{ url_for('wiki.uploaded_file', filename=art['image']) }}" />
+                    <img height="256" src="{{ url_for('wiki.uploaded_file', filename=art['img']) }}" />
                     <span class="card-title title-col"> {{art['title']}} </span>
                 </div>
                 
@@ -38,7 +39,7 @@
                 <!-- Button to take user to full article -->                
                    <button class="btn-small pink accent-3 dtl-btn" >
                         <a class="action text-btn" 
-                        href="{{ url_for('wiki.detail', id=art['id']) }}">
+                         href="{{ url_for('wiki.detail', id=art['id']) }}"> 
                             Detail
                         </a> 
                     </button>               
@@ -62,6 +63,9 @@
             </div>
         </div>    
         {% endfor %}
+        {% else %}
+        No Articles
+        {% endif %}
 
 
     </div>

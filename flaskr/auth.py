@@ -1,5 +1,5 @@
 import functools
-
+import psycopg2
 from flask import (
     Blueprint, flash, g, redirect, render_template,
     request, session, url_for
@@ -27,12 +27,14 @@ def register():
 
         if error is None:
             try:
-                db.execute(
-                    "INSERT INTO user (username, password) VALUES (?, ?)",
+                cursor = db.cursor()
+                cursor.execute(
+                    'INSERT INTO "user" (username, password) VALUES (%s, %s)',
                     (username, generate_password_hash(password)),
                 )
+                cursor.close()
                 db.commit()
-            except db.IntegrityError:
+            except psycopg2.IntegrityError:
                 error = f"User {username} is already registered."
             else:
                 return redirect(url_for("auth.login"))
@@ -50,23 +52,39 @@ def login():
         password = request.form['password']
         db = get_db()
         error = None
-        user = db.execute(
-            'SELECT * FROM user WHERE username = ?', (username,)
-        ).fetchone()
 
-        if user is None:
-            error = 'Incorrect username.'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
-
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'  
+        
         if error is None:
-            session.clear()
-            session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            try:
+                cursor = db.cursor()
+                cursor.execute(
+                    'SELECT * FROM "user" WHERE username = %s',
+                    (username,),
+                )
+                user = cursor.fetchone()
+
+                if user is None:
+                    error = 'Incorrect username.'
+                elif not check_password_hash(user[2], password):
+                    error = 'Incorrect password.'
+
+                cursor.close() 
+
+                if error is None:
+                    session.clear()
+                    session['user_id'] = user[0]
+                    return redirect(url_for('index'))
+
+            except psycopg2.Error as e:
+                error = f'Database error: {e}'
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('auth/login.html')   
 
 
 @bp.before_app_request
@@ -76,9 +94,14 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
-        ).fetchone()
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute(
+            'SELECT * FROM "user" WHERE id = %s', 
+            (user_id,)
+        )
+        g.user = cursor.fetchone()
+        cursor.close()
 
 
 # ---- Logout

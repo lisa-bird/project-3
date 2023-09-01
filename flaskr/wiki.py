@@ -4,6 +4,7 @@ from flask import (
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 import os
+import psycopg2
 
 from flaskr.auth import login_required
 from flaskr.db import get_db
@@ -15,14 +16,31 @@ bp = Blueprint('wiki', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    articles = db.execute(
-        'SELECT a.id as id, a.title as title, a.created as created, a.author_id as author, u.username as username, a.summary as summary, a.img as image, COUNT(c.id) AS comment_count'
-        ' FROM article a  LEFT JOIN user u ON a.author_id = u.id LEFT JOIN comment c ON a.id = c.article_id'
-        ' GROUP BY a.id'
-        ' ORDER BY a.created DESC'
-    ).fetchall()
+    cursor = db.cursor()
 
-    return render_template('wiki/index.html', articles=articles)
+    cursor.execute(
+        'SELECT a.id, a.title, a.created, a.author_id, u.username, a.summary, a.img, COUNT(c.id) AS comment_count '
+        'FROM article a '
+        'LEFT JOIN "user" u ON a.author_id = u.id '
+        'LEFT JOIN comment c ON a.id = c.article_id '
+        'GROUP BY a.id, a.title, a.created, a.author_id, u.username, a.summary, a.img '
+        'ORDER BY a.created DESC'
+    )
+
+    
+    articles = cursor.fetchall()
+    # Get the column names from cursor description
+    column_names = [desc[0] for desc in cursor.description]
+
+    # Iterate through the rows and map them to dictionaries
+    article_list = []
+    for row in articles:
+        row_dict = dict(zip(column_names, row))
+        article_list.append(row_dict)
+
+    cursor.close()  
+    print(f">>>{article_list}")
+    return render_template('wiki/index.html', articles=article_list)
 
 
 # ---- Create View
@@ -50,29 +68,41 @@ def create():
             flash(error)
         else:
             db = get_db()
-            db.execute(
+            cursor = db.cursor()
+            cursor.execute(
                 'INSERT INTO article (title, summary, body, author_id, img)'
-                ' VALUES (?, ?, ?, ?, ?)',
-                (title, summary, body, g.user['id'], filename)
+                ' VALUES (%s, %s, %s, %s, %s )',
+                (title, summary, body, g.user[0], filename)
             )
             db.commit()
+            cursor.close()
+
             return redirect(url_for('wiki.index'))
 
     return render_template('wiki/create.html')
 
 
 def get_article(id, check_author=True):
-    article = get_db().execute(
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(
         'SELECT p.id, title, body, created, author_id, username, summary, img'
-        ' FROM article p JOIN user u ON p.author_id = u.id'
-        ' WHERE p.id = ?',
+        ' FROM article p JOIN "user" u ON p.author_id = u.id'
+        ' WHERE p.id = %s',
         (id,)
-    ).fetchone()
+    )
+    article = cursor.fetchone()
+
+    column_names = [desc[0] for desc in cursor.description]
+
+    article = dict(zip(column_names,article))
+
+    cursor.close()
 
     if article is None:
         abort(404, f"Article id {id} doesn't exist.")
 
-    if check_author and article['author_id'] != g.user['id']:
+    if check_author and article['author_id'] != g.user[0]:
         abort(403)
 
     return article
@@ -99,12 +129,14 @@ def update(id):
             flash(error)
         else:
             db = get_db()
-            db.execute(
-                'UPDATE article SET title = ?, body = ?, summary = ?, img = ?'
-                ' WHERE id = ?',
+            cursor = db.cursor()
+            cursor.execute(
+                'UPDATE article SET title = %s, body = %s, summary = %s, img = %s'
+                ' WHERE id = %s',
                 (title, body, summary, img, id)
             )
             db.commit()
+            cursor.close()
             return redirect(url_for('wiki.index'))
 
     return render_template('wiki/update.html', article=article)
@@ -116,13 +148,25 @@ def update(id):
 def detail(id):
 
     article = get_article(id, check_author=False)
-    comments = get_db().execute(
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute(
         'SELECT comment.id, body, created, author_id, username'
-        ' FROM comment JOIN user ON author_id = user.id'
-        ' WHERE article_id = ?',
+        ' FROM comment JOIN "user" ON author_id = "user".id'
+        ' WHERE article_id = %s',
         (str(id),)
-        ).fetchall()
-    return render_template('wiki/detail.html', art=article, comments=comments)
+    )
+    comments = cursor.fetchall()
+
+    column_names = [desc[0] for desc in cursor.description]
+   
+    comment_list = []
+    for row in comments:
+        row_dict = dict(zip(column_names, row))
+        comment_list.append(row_dict)
+
+    cursor.close()    
+    return render_template('wiki/detail.html', art=article, comments=comment_list)
 
 
 # ---- Create comment view
@@ -136,14 +180,15 @@ def create_comment(id):
             flash('Comment body is required.', 'error')
         else:
             db = get_db()
-            db.execute(
+            cursor = db.cursor()
+            cursor.execute(
                 'INSERT INTO comment (article_id, author_id, body)'
-                ' VALUES (?, ?, ?)',
-                (id, g.user['id'], body)
+                ' VALUES (%s, %s, %s)',
+                (id, g.user[0], body)
             )
             db.commit()
-        flash('Comment created successfully!')
-        # change to return to article view
+            cursor.close()
+        flash('Comment created successfully!')        
         return redirect(url_for('wiki.detail', id=id))
     return render_template('wiki/create_comment.html')
 
@@ -154,8 +199,10 @@ def create_comment(id):
 def delete(id):
     get_article(id)
     db = get_db()
-    db.execute('DELETE FROM article WHERE id = ?', (id,))
+    cursor = db.cursor()
+    cursor.execute('DELETE FROM article WHERE id = %s', (id,))
     db.commit()
+    cursor.close()
     return redirect(url_for('wiki.index'))
 
 
