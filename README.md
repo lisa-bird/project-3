@@ -2,6 +2,8 @@
 
 ![Mock up](/flaskr/static/img/mock-up.jpg)
 
+[Vist my website here](https://project-3-lb-cad35c2a8ec5.herokuapp.com/)
+
 Milestone project three calls for a full-stack site that allows users to manage common dataset about a particular domain.
 With the release of the highly anticipated new Barbie movie, I wanted to create a Barbie inspired wiki. Allowing users to read articles about all things Barbie, create their own articles and comment on others.
 
@@ -80,19 +82,21 @@ To help me create this website I used these technologies:
 * [Flask](https://flask.palletsprojects.com/en/2.3.x/)
 * [Stack Overflow](https://stackoverflow.com/)
 * [Heroku](https://heroku.com/)
+* [ElephantSQL](https://api.elephantsql.com/)
+
 
 # Data Schema
 
 The data schema consists of tables. Each table is defined with spefic columns to store information related to users, articles and comments.
-![User table](/flaskr/static/img/data-user.jpg)
+![User table](/flaskr/static/img/table-1.jpg)
 
 As you can see from the screenshot above the 'id' is a unique identifier for each user. The username must be unique and cannot be Null.
 
-![Article table](/flaskr/static/img/data-art.jpg)
+![Article table](/flaskr/static/img/table-2.jpg)
 
 Again a unique 'id' for each article. 'author_id': Foreign key referencing the 'id' column of the 'user' table, defining the author of the article. 'created' The timestamp of when the article was created, cannot be Null. 'title' 'summary' 'body' all cannot be Null. 'img' A field for storing the image associated with the article.
 
-![Comments table](/flaskr/static/img/data-com.jpg)
+![Comments table](/flaskr/static/img/table-3.jpg)
 
 Similar to the article table with the addition of 'article_id': Foreign key referencing the 'id' column of the article table. Identifying the article to which the comment belongs to.
 
@@ -151,7 +155,11 @@ The project was tested on the browsers listed below:
  * Safari *v.16.6*
  * Edge *v.116.0.1938.62*
 
-![Further testing]()
+ When deploying the project I had some issues with Heroku. The main problem being that I did not have the correct file for Heroku to run the app. I added a run.py file to the project to include how the app runs, which solved the problem.
+
+ During testing, once deployed, it become apparant that the users and the data being inserted into the app was not being saved. I was using SQLite for my database. Thorough reasearch led to reading Heroku's ephemeral file system makes it unsuitable for SQLite databases. Heroku's file system is read-only, and any changes made to the file system will be lost whenever the application is restarted or scaled up. I then changed my code to accomodate Postgresql, to finally get the deployment correct.
+
+![Further testing](/flaskr/static/img/test-ex.jpg)
 
 # User Stories
 
@@ -237,5 +245,7 @@ To do this the following must be completed:
    * DATABASE_NAME:  *Your db name*
    * SECRET_KEY:  *Your own secret key*
 
- 7. Go back to the Deployment tab and select 'Deploy Branch'
+7. Go back to the Deployment tab and select 'Deploy Branch'
+
+8. You app should now be deployed.
 
